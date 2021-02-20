@@ -2,6 +2,5 @@ from django import forms
 
 
 class ComputeForm(forms.Form):
-    memory = forms.IntegerField(label="Requested Memory (bytes)")
-    runtime = forms.IntegerField(label="Requested Runtime (ms)")
+    runtime = forms.IntegerField(label="Requested Runtime (in seconds)")
     file = forms.FileField()

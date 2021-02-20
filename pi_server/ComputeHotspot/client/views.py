@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import ComputeForm
 from . import handlers
+import uuid
 
 
 def index(request):
@@ -15,12 +16,14 @@ def index(request):
         if form.is_valid():
             filepath = handlers.handle_uploaded_file(
                 request.FILES['file'])
-            context = {
-                'memory': request.POST['memory'],
-                'runtime': request.POST['runtime']
-            }
             handlers.copy_file_to_remote_machine(
-                filepath, "~/files/.", "vinczeza@teach.cs.utoronto.ca")
+                filepath, "~/files/.", "pi_01@52.142.54.92")
+            result = handlers.execute_file_on_remote_machine(
+                filepath, request.POST['runtime'], "pi_01", "52.142.54.92")
+            context = {
+                'runtime': request.POST['runtime'],
+                'result': result
+            }
             return render(request, 'client/compute.html', context)
         else:
             return HttpResponse("Invalid form entry.")
