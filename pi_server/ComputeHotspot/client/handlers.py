@@ -34,7 +34,6 @@ def execute_file_on_remote_machine(user_id, runtime, username, hostname):
     ssh.connect(hostname, username=username, pkey=key)
     command = "python3.8 programhandler.py " + runtime + \
         " " + "files/" + user_id + "/" + user_id + ".py"
-    print(command)
     ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command)
     result = []
     for line in iter(ssh_stdout.readline, ""):
