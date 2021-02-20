@@ -20,7 +20,7 @@ def index(request):
             handlers.copy_file_to_remote_machine(
                 filepath, user_id, "pi_01", "52.142.54.92")
             result = handlers.execute_file_on_remote_machine(
-                filepath, request.POST['runtime'], "pi_01", "52.142.54.92")
+                user_id, request.POST['runtime'], "pi_01", "52.142.54.92")
             context = {
                 'runtime': request.POST['runtime'],
                 'result': result

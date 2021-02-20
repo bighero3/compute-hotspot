@@ -32,8 +32,10 @@ def execute_file_on_remote_machine(user_id, runtime, username, hostname):
         "/home/zacharyvincze/.ssh/id_rsa")
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(hostname, username=username, pkey=key)
-    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(
-        "python3.8 programhandler.py " + runtime + " " + "files/" + user_id + "/" + user_id + ".py")
+    command = "python3.8 programhandler.py " + runtime + \
+        " " + "files/" + user_id + "/" + user_id + ".py"
+    print(command)
+    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command)
     result = []
     for line in iter(ssh_stdout.readline, ""):
         result.append(line)
