@@ -16,7 +16,7 @@ def handle_uploaded_file(f, user_id):
 def copy_file_to_remote_machine(filepath, user_id, username, hostname):
     ssh = paramiko.SSHClient()
     key = paramiko.RSAKey.from_private_key_file(
-        "/home/zacharyvincze/.ssh/id_rsa")
+        "/home/ubuntu/.ssh/id_rsa")
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(hostname, username=username, pkey=key)
     ssh.exec_command(
@@ -29,7 +29,7 @@ def copy_file_to_remote_machine(filepath, user_id, username, hostname):
 def execute_file_on_remote_machine(user_id, runtime, username, hostname):
     ssh = paramiko.SSHClient()
     key = paramiko.RSAKey.from_private_key_file(
-        "/home/zacharyvincze/.ssh/id_rsa")
+        "/home/ubuntu/.ssh/id_rsa")
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(hostname, username=username, pkey=key)
     command = "python3.8 programhandler.py " + runtime + \
