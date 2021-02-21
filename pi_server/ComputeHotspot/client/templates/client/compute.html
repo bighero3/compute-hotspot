@@ -1,5 +1,16 @@
-<p>Computed with {{runtime}} seconds of runtime.</p>
-<p>Result:</p>
-{% for line in result %}
-    <p>{{line}}</p>
-{% endfor %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'client/style.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container">
+    <div class="hover-box">
+        <p>Computed with {{runtime}} seconds of runtime.</p>
+        <div class="console-output">
+            <pre>
+{{result}}
+            </pre>
+        </div>
+        <a href="/"><button class="small-button" type="submit">Back</button></a>
+    </div>
+</div>
