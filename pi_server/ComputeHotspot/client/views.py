@@ -23,7 +23,8 @@ def index(request):
                 user_id, request.POST['runtime'], "pi_01", "52.142.54.92")
             context = {
                 'runtime': request.POST['runtime'],
-                'result': result
+                'result': result,
+                'id': user_id
             }
             return render(request, 'client/compute.html', context)
         else:
