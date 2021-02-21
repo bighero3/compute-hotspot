@@ -1,8 +1,5 @@
-import signal 
-import resource 
-import os 
 import sys
-
+import os
 import subprocess
 
 # checking time limit exceed 
@@ -12,7 +9,13 @@ if __name__ == '__main__':
     if len(sys.argv)!=3:
         print("Usage: programhandler.py <cpu time in seconds> <path to file to be run>")
     else:
-        
-        print(subprocess.run(["python", sys.argv[2]], capture_output=True, timeout=float(sys.argv[1])))
+
+        j=0
+        for i in range(len(sys.argv[2])):
+            if sys.argv[2][i] == "/":
+                j=i
+        newdir = sys.argv[2][:j]
+        print(os.getcwd() +"/"+ newdir)
+        print(subprocess.run(["python3.8", sys.argv[2][j+1:]], capture_output=False, timeout=float(sys.argv[1]), cwd=os.getcwd() +"/"+ newdir))
         print("Finished without running out of time or memory")
 
