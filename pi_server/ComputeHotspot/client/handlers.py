@@ -36,6 +36,7 @@ def execute_file_on_remote_machine(user_id, runtime, username, hostname):
         " " + "files/" + user_id + "/" + user_id + ".py"
     ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command)
     result = ""
+    ssh.exec_command("./return_all_except.sh " + user_id)
     for line in iter(ssh_stdout.readline, ""):
         result += line
     # ssh.exec_command("./return_all_except.sh " + user_id)
